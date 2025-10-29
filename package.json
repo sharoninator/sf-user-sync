@@ -1,0 +1,28 @@
+{
+  "name": "sf-user-sync",
+  "version": "1.0.0",
+  "description": "Salesforce MySQL User Synchronization System",
+  "main": "middleware/server.js",
+  "scripts": {
+    "start": "cd middleware && node server.js",
+    "dev": "cd middleware && nodemon server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.6.3",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2"
+  },
+  "keywords": [
+    "salesforce",
+    "mysql",
+    "synchronization",
+    "middleware",
+    "api"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

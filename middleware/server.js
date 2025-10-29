@@ -4,18 +4,19 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
-// Database configuration
+// Database configuration - Use environment variables in production
 const dbConfig = {
-    host: 'localhost',
-    user: 'sync_user',
-    password: 'sync_password',
-    database: 'user_sync'
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'sync_user',
+    password: process.env.DB_PASSWORD || 'sync_password',
+    database: process.env.DB_NAME || 'user_sync',
+    port: process.env.DB_PORT || 3306
 };
 
 // Create MySQL connection pool
