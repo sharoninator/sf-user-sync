@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RemoteSiteSetting xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Localhost_Middleware</fullName>
-    <description>Remote site setting for middleware API via localtunnel</description>
+    <fullName>Production_Middleware</fullName>
+    <description>Remote site setting for production middleware API on Railway</description>
     <disableProtocolSecurity>false</disableProtocolSecurity>
     <isActive>true</isActive>
-    <url>https://bumpy-feet-greet.loca.lt</url>
+    <url>https://YOUR-RAILWAY-APP.up.railway.app</url>
 </RemoteSiteSetting>

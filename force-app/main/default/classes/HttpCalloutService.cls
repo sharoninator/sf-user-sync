@@ -1,7 +1,7 @@
 public with sharing class HttpCalloutService {
     
-    // POC: Updated to use public localtunnel URL
-    private static final String MIDDLEWARE_BASE_URL = 'https://common-things-win.loca.lt';
+    // Production: Will be updated with Railway URL after deployment
+    private static final String MIDDLEWARE_BASE_URL = 'https://YOUR-RAILWAY-APP.up.railway.app';
     private static final Integer TIMEOUT_SECONDS = 30;
     
     public static void sendUsersToExternalSystem(List<ExternalUserService.ExternalUserData> userData) {
