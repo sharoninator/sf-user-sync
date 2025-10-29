@@ -1,0 +1,1 @@
+System.debug(HelloApex.greet('Sharon'));
