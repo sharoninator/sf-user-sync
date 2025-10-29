@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RemoteSiteSetting xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Localhost_Middleware</fullName>
-    <description>Remote site setting for local middleware API at localhost:3000</description>
-    <disableProtocolSecurity>true</disableProtocolSecurity>
+    <description>Remote site setting for middleware API via localtunnel</description>
+    <disableProtocolSecurity>false</disableProtocolSecurity>
     <isActive>true</isActive>
-    <url>http://localhost:3000</url>
+    <url>https://bumpy-feet-greet.loca.lt</url>
 </RemoteSiteSetting>

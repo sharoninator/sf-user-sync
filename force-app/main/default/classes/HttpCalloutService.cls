@@ -1,7 +1,7 @@
 public with sharing class HttpCalloutService {
     
-    // POC: Hardcoded localhost URL
-    private static final String MIDDLEWARE_BASE_URL = 'http://localhost:3000';
+    // POC: Updated to use public localtunnel URL
+    private static final String MIDDLEWARE_BASE_URL = 'https://common-things-win.loca.lt';
     private static final Integer TIMEOUT_SECONDS = 30;
     
     public static void sendUsersToExternalSystem(List<ExternalUserService.ExternalUserData> userData) {
