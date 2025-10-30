@@ -3,7 +3,18 @@ public class ExternalUserInboundSync implements Schedulable, Database.AllowsCall
     public static final String CRON_HOURLY = '0 0 * * * ?'; // Run every hour at the top of the hour
     private static final String CURSOR_SETTING_NAME = 'External_User_Sync_Cursor';
     
+    // Schedulable execute method
     public void execute(SchedulableContext context) {
+        executeSync();
+    }
+    
+    // Static method for queueable execution
+    public static void executeAsQueueable() {
+        ExternalUserInboundSync syncJob = new ExternalUserInboundSync();
+        syncJob.executeSync();
+    }
+    
+    public void executeSync() {
         try {
             // Get the last sync cursor (timestamp) from custom settings
             String cursor = getLastSyncCursor();
@@ -47,7 +58,7 @@ public class ExternalUserInboundSync implements Schedulable, Database.AllowsCall
             ];
             
             if (!configs.isEmpty() && configs[0].Last_Sync_Timestamp__c != null) {
-                return String.valueOf(configs[0].Last_Sync_Timestamp__c.getTime());
+                return configs[0].Last_Sync_Timestamp__c.formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\'');
             }
         } catch (Exception ex) {
             System.debug('Could not retrieve sync cursor: ' + ex.getMessage());
@@ -55,7 +66,7 @@ public class ExternalUserInboundSync implements Schedulable, Database.AllowsCall
         
         // Default to 1 hour ago if no cursor found
         DateTime oneHourAgo = DateTime.now().addHours(-1);
-        return String.valueOf(oneHourAgo.getTime());
+        return oneHourAgo.formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\'');
     }
     
     private void updateSyncCursor() {

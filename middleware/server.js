@@ -174,11 +174,10 @@ app.get('/users', async (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`🚀 SF User Sync Middleware API running on http://localhost:${PORT}`);
-    console.log(`📊 Health check: http://localhost:${PORT}/health`);
-    console.log(`👥 All users: http://localhost:${PORT}/users`);
-    console.log(`🔄 Changes endpoint: http://localhost:${PORT}/users/changes-since/{timestamp}`);
-    console.log(`📨 Salesforce endpoint: POST http://localhost:${PORT}/users/from-salesforce`);
+    console.log(`SF User Sync Middleware API running on http://localhost:${PORT}`);
+    console.log(`Health check: http://localhost:${PORT}/health`);
+    console.log(`Salesforce endpoint: http://localhost:${PORT}/users/from-salesforce`);
+    console.log(`Changes endpoint: http://localhost:${PORT}/users/changes-since/{timestamp}`);
 });
 
 // Graceful shutdown

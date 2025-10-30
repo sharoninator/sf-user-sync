@@ -26,11 +26,11 @@ public with sharing class ExternalUserTriggerHandler {
     
     private static Boolean hasRelevantFieldChanged(External_User__c newRecord, External_User__c oldRecord) {
         return newRecord.External_User_Id__c != oldRecord.External_User_Id__c ||
-               newRecord.Email__c != oldRecord.Email__c ||
-               newRecord.FirstName__c != oldRecord.FirstName__c ||
-               newRecord.LastName__c != oldRecord.LastName__c ||
-               newRecord.Phone__c != oldRecord.Phone__c ||
-               newRecord.Deleted__c != oldRecord.Deleted__c;
+               newRecord.User_Email__c != oldRecord.User_Email__c ||
+               newRecord.User_FirstName__c != oldRecord.User_FirstName__c ||
+               newRecord.User_LastName__c != oldRecord.User_LastName__c ||
+               newRecord.User_Phone__c != oldRecord.User_Phone__c ||
+               newRecord.User_Deleted__c != oldRecord.User_Deleted__c;
     }
     
     private static void enqueueOutboundSync(List<External_User__c> changedRecords) {

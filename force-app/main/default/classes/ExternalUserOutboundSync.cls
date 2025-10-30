@@ -38,11 +38,11 @@ public class ExternalUserOutboundSync implements Queueable, Database.AllowsCallo
         for (External_User__c externalUser : records) {
             ExternalUserService.ExternalUserData data = new ExternalUserService.ExternalUserData();
             data.externalId = externalUser.External_User_Id__c;
-            data.email = externalUser.Email__c;
-            data.firstName = externalUser.FirstName__c;
-            data.lastName = externalUser.LastName__c;
-            data.phone = externalUser.Phone__c;
-            data.deleted = externalUser.Deleted__c;
+            data.email = externalUser.User_Email__c;
+            data.firstName = externalUser.User_FirstName__c;
+            data.lastName = externalUser.User_LastName__c;
+            data.phone = externalUser.User_Phone__c;
+            data.deleted = externalUser.User_Deleted__c;
             
             userData.add(data);
         }

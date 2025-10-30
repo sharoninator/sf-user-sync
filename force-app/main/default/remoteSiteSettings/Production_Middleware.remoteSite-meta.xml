@@ -4,5 +4,5 @@
     <description>Remote site setting for production middleware API on Railway</description>
     <disableProtocolSecurity>false</disableProtocolSecurity>
     <isActive>true</isActive>
-    <url>https://YOUR-RAILWAY-APP.up.railway.app</url>
+    <url>https://middleware-production-229f.up.railway.app</url>
 </RemoteSiteSetting>
