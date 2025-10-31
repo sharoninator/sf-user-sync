@@ -15,13 +15,15 @@ public with sharing class ExternalUserService {
         List<External_User__c> toUpsert = new List<External_User__c>();
         for (ExternalUserData userData : rows) {
             if (String.isBlank(userData.externalId)) continue; // require key
+            
+            
             External_User__c externalUser = new External_User__c();
             externalUser.External_User_Id__c = userData.externalId;
-            externalUser.Email__c           = userData.email;
-            externalUser.FirstName__c       = userData.firstName;
-            externalUser.LastName__c        = userData.lastName;
-            externalUser.Phone__c           = userData.phone;
-            externalUser.Deleted__c         = userData.deleted == null ? false : userData.deleted;
+            externalUser.User_Email__c      = userData.email;
+            externalUser.User_FirstName__c  = userData.firstName;
+            externalUser.User_LastName__c   = userData.lastName;
+            externalUser.User_Phone__c      = userData.phone;
+            externalUser.User_Deleted__c    = userData.deleted == null ? false : userData.deleted;
             toUpsert.add(externalUser);
         }
         upsert toUpsert External_User_Id__c;

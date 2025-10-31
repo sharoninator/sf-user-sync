@@ -40,11 +40,11 @@ echo "3. Testing Salesforce to MySQL sync (CREATE)..."
 cat << EOF > create_test_user.apex
 External_User__c testUser = new External_User__c();
 testUser.External_User_Id__c = '${TEST_PREFIX}_CREATE_${TIMESTAMP}';
-testUser.Email__c = 'test.create.${TIMESTAMP}@sync-test.com';
-testUser.FirstName__c = 'Test';
-testUser.LastName__c = 'Creator';
-testUser.Phone__c = '+1555000${TIMESTAMP:(-4)}';
-testUser.Deleted__c = false;
+testUser.User_Email__c = 'test.create.${TIMESTAMP}@sync-test.com';
+testUser.User_FirstName__c = 'Test';
+testUser.User_LastName__c = 'Creator';
+testUser.User_Phone__c = '+1555000${TIMESTAMP:(-4)}';
+testUser.User_Deleted__c = false;
 insert testUser;
 System.debug('SUCCESS: Created test user: ' + testUser.Id);
 System.debug('External ID: ' + testUser.External_User_Id__c);
@@ -69,8 +69,8 @@ cat << EOF > update_test_user.apex
 List<External_User__c> users = [SELECT Id FROM External_User__c WHERE External_User_Id__c = '${TEST_PREFIX}_CREATE_${TIMESTAMP}'];
 if (!users.isEmpty()) {
     External_User__c user = users[0];
-    user.FirstName__c = 'Updated';
-    user.Phone__c = '+1555999${TIMESTAMP:(-4)}';
+    user.User_FirstName__c = 'Updated';
+    user.User_Phone__c = '+1555999${TIMESTAMP:(-4)}';
     update user;
     System.debug('SUCCESS: Updated test user: ' + user.Id);
 }
@@ -133,7 +133,7 @@ cat << EOF > delete_test_user.apex
 List<External_User__c> users = [SELECT Id FROM External_User__c WHERE External_User_Id__c = '${TEST_PREFIX}_CREATE_${TIMESTAMP}'];
 if (!users.isEmpty()) {
     External_User__c user = users[0];
-    user.Deleted__c = true;
+    user.User_Deleted__c = true;
     update user;
     System.debug('SUCCESS: Soft deleted test user: ' + user.Id);
 }
@@ -156,7 +156,7 @@ echo ""
 echo "7. Final count verification..."
 FINAL_SF_COUNT=$(sf data query --query "SELECT COUNT() FROM External_User__c" --json | jq -r '.result.totalSize')
 FINAL_MYSQL_COUNT=$(curl -s "$MIDDLEWARE_URL/users" | jq '.users | length')
-ACTIVE_SF_COUNT=$(sf data query --query "SELECT COUNT() FROM External_User__c WHERE Deleted__c = false" --json | jq -r '.result.totalSize')
+ACTIVE_SF_COUNT=$(sf data query --query "SELECT COUNT() FROM External_User__c WHERE User_Deleted__c = false" --json | jq -r '.result.totalSize')
 ACTIVE_MYSQL_COUNT=$(curl -s "$MIDDLEWARE_URL/users" | jq '[.users[] | select(.deleted == false or .deleted == 0)] | length')
 
 echo "Stats: Final Salesforce users: $FINAL_SF_COUNT (Active: $ACTIVE_SF_COUNT)"
